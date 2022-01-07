@@ -1409,6 +1409,16 @@ argument.\n\
 	return CMD_SUCCESS;
 }
 
+DEFUN (show_wide,
+	   show_wide_cmd,
+	   "show wide",
+	   SHOW_STR
+	   "Displays wide!\n")
+{
+	vty_out(vty, "Hello, WIDE Project!!!\n");
+	return CMD_SUCCESS;
+}
+
 static void permute(struct graph_node *start, struct vty *vty)
 {
 	static struct list *position = NULL;
@@ -2447,6 +2457,8 @@ void cmd_init(int terminal)
 	/* Each node's basic commands. */
 	install_element(VIEW_NODE, &show_version_cmd);
 	install_element(ENABLE_NODE, &show_startup_config_cmd);
+	// add for show wide command
+	install_element(VIEW_NODE, &show_wide_cmd);
 
 	if (terminal) {
 		install_element(ENABLE_NODE, &debug_memstats_cmd);
